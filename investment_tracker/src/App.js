@@ -8,6 +8,7 @@ function App() {
   const [data, setData] = useState({ items: [] });
 
   const updateFilters = (searchParams) => {
+    console.log(searchParams);
     setFilters(searchParams);
   };
 
@@ -19,10 +20,40 @@ function App() {
     console.log(data);
   };
 
+  const filterData = (data) => {
+    const filteredData = [];
+
+    if (filters.name == null) {
+      return data;
+    }
+
+    for (const item of data) {
+      if (!item.name.toLowerCase().includes(filters.name.toLowerCase())) {
+        continue;
+      }
+
+      if (filters.price != "" && item.price > filters.price) {
+        continue;
+      }
+
+      if (!item.type.toLowerCase().includes(filters.type.toLowerCase())) {
+        continue;
+      }
+
+      if (!item.brand.toLowerCase().includes(filters.brand.toLowerCase())) {
+        continue;
+      }
+
+      filteredData.push(item);
+    }
+
+    return filteredData;
+  };
+
   return (
     <div className="container">
       <div className="row mt-2">
-        <ItemsDisplay items={data["items"]} />
+        <ItemsDisplay items={filterData(data["items"])} />
       </div>
       <div className="row mt-2">
         <SearchBar updateSearchParams={updateFilters} />

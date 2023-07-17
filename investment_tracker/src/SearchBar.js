@@ -2,17 +2,23 @@ import { useState } from "react";
 
 function SearchBar(props) {
   const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState("");
   const [type, setType] = useState("");
   const [brand, setBrand] = useState("");
 
-  const searchButtonPressed = () => {
-    props.updateSearchParams({
+  const searchMade = (value, state, setUpdate) => {
+    setUpdate(value);
+
+    let searchParams = {
       name: name,
       price: price,
       type: type,
       brand: brand,
-    });
+    };
+
+    searchParams[state] = value;
+
+    props.updateSearchParams(searchParams);
   };
 
   return (
@@ -28,7 +34,9 @@ function SearchBar(props) {
             type="text"
             className="form-control"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              searchMade(e.target.value, "name", setName);
+            }}
           />
         </div>
         <div className="col">
@@ -38,7 +46,9 @@ function SearchBar(props) {
             type="number"
             className="form-control"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={(e) => {
+              searchMade(e.target.value, "price", setPrice);
+            }}
           />
         </div>
         <div className="col">
@@ -48,7 +58,9 @@ function SearchBar(props) {
             type="text"
             className="form-control"
             value={type}
-            onChange={(e) => setType(e.target.value)}
+            onChange={(e) => {
+              searchMade(e.target.value, "type", setType);
+            }}
           />
         </div>
         <div className="col">
@@ -58,19 +70,11 @@ function SearchBar(props) {
             type="text"
             className="form-control"
             value={brand}
-            onChange={(e) => setBrand(e.target.value)}
+            onChange={(e) => {
+              searchMade(e.target.value, "brand", setBrand);
+            }}
           />
         </div>
-      </div>
-      <div className="row mt-3">
-        <div className="col-4" />
-        <button
-          type="button"
-          className="col-4 btn btn-secondary"
-          onClick={searchButtonPressed}
-        >
-          Search
-        </button>
       </div>
     </div>
   );
