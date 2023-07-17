@@ -8,7 +8,6 @@ function App() {
   const [data, setData] = useState({ items: [] });
 
   const updateFilters = (searchParams) => {
-    console.log(searchParams);
     setFilters(searchParams);
   };
 
@@ -32,7 +31,7 @@ function App() {
         continue;
       }
 
-      if (filters.price != "" && item.price > filters.price) {
+      if (filters.price != "" && item.price * 1 > filters.price * 1) {
         continue;
       }
 
