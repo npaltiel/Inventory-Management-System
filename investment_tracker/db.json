@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "name": "ok",
+      "price": "2",
+      "type": "asd",
+      "brand": "fghfgh",
+      "id": 9
+    },
+    {
+      "name": "dfg",
+      "price": "2",
+      "type": "jghj",
+      "brand": "dfgdfg",
+      "id": 10
+    }
+  ]
+}
