@@ -1,1 +1,1 @@
-# investment_tracker
+# Inventory Management System
